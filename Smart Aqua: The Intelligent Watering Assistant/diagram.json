@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 115.2, "left": 120.04, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -20.5, "left": 134.2, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -89.6,
+      "left": 264.8,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -188.39,
+      "left": 950.83,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": 72, "left": 753.6, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pot1:GND", "esp:3V3", "black", [ "v0" ] ],
+    [ "pot1:VCC", "esp:GND.2", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp:32", "green", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-57.6", "v201.6" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h0" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h0" ] ],
+    [ "drv1:VDD", "esp:3V3", "green", [ "h0" ] ],
+    [ "drv1:GND.2", "esp:GND.2", "black", [ "h0" ] ],
+    [ "drv1:STEP", "esp:18", "green", [ "h0" ] ],
+    [ "drv1:DIR", "esp:19", "green", [ "h-518.4", "v163.2", "h-76.8" ] ],
+    [ "drv1:ENABLE", "esp:GND.2", "green", [ "h-345.6", "v96" ] ],
+    [ "drv1:VMOT", "esp:VN", "green", [ "h-268.65", "v134.48", "h-556.8", "v115.2" ] ],
+    [ "drv1:GND.1", "esp:GND.1", "black", [ "v153.68", "h-38.25", "v57.6", "h-528" ] ],
+    [ "stepper1:A+", "drv1:1A", "green", [ "v0" ] ],
+    [ "stepper1:A-", "drv1:1B", "green", [ "v0" ] ],
+    [ "stepper1:B+", "drv1:2A", "green", [ "v0" ] ],
+    [ "drv1:2B", "stepper1:B-", "green", [ "h0" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
